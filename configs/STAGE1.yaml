@@ -1,0 +1,26 @@
+# training configs
+name: typhoon1
+
+seed: 20241230
+continue: False
+
+train_batch_size: 4
+val_batch_size: 1
+epoch: 300
+learning_rate: 0.0001
+
+model: ViT
+loss: mse
+
+lr_policy: warmup_cosine
+#onecycle
+
+dataroot: datasets/data/sampled_data
+
+
+
+
+
+
+
+
