@@ -5,8 +5,8 @@ import torchvision.transforms.functional as TF
 # 데이터셋 클래스 정의
 # 위도 경도 채널인 4,5번 밴드는 제외함. 0-3번 밴드만 사용 
 # 추후 시도시 변경필요 , loss 도 직접적인 위치를 예측하도록 전달하였음.
-# 해야할거  
-# augmentation 종류 추가하기 rotation 정도 가능해 보임 
+# Todo 
+# 
 # 
 
 class TyphoonDataset(Dataset):
@@ -43,11 +43,7 @@ class TyphoonDataset(Dataset):
         
         # 이미지 로드
         image = tiff.imread(image_path)
-        
-        # 정규화 적용
         image = self.normalize_image(image)
-        
-        # numpy to tensor
         image = torch.from_numpy(image).permute(2, 0, 1).float()
         
         # Augmentation 적용 및 시각화
@@ -63,7 +59,6 @@ class TyphoonDataset(Dataset):
         
         image_cropped = TF.crop(image, crop_y, crop_x, self.crop_size, self.crop_size)
         
-        # Additional transforms if any        
         label = (crop_x, crop_y)
         grade = self.data.iloc[idx]['grade']
         return {
@@ -79,7 +74,6 @@ class TyphoonDataset(Dataset):
         maxs = [float('-inf')] * 6
         
         for idx in range(len(self)):
-            # CSV에서 각 행의 정보를 가져옴
             year = self.data.iloc[idx]['year']
             name = self.data.iloc[idx]['name']
             time_str = self.data.iloc[idx]['time']

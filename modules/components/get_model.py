@@ -1,6 +1,6 @@
 from utils.imports import *
 from modules.models.center_finder import CenterFinder
-from modules.components.Attentionblock import *
+from modules.models.Vit import TransformerRegressor
 
 
 def get_model(config):

@@ -17,15 +17,15 @@ class main_ConvBlock(nn.Module):
         
         self.depthwise = nn.Conv2d(
             in_channels=in_channels,
-            out_channels=out_channels,  # Changed from in_channels to out_channels
+            out_channels=out_channels,  
             kernel_size=kernel_size,
             stride=stride,
             padding=padding,
             groups=in_channels,
             bias=False
         )
-        self.norm = LayerNormChannel(out_channels)  # Changed to out_channels
-        self.feedforward = FeedForward(out_channels, expand_ratio=4)  # Changed to out_channels
+        self.norm = LayerNormChannel(out_channels)  
+        self.feedforward = FeedForward(out_channels, expand_ratio=4)  
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
         self.use_residual = use_residual
         self.project = nn.Conv2d(in_channels, out_channels, 1) if in_channels != out_channels else nn.Identity()

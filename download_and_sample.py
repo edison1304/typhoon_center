@@ -100,10 +100,8 @@ def download_typhoon_data(typhoon_data, bands, extra_auth_keys, log_file_path, c
                     wait_until_morning(log_file_path)  # 오전 5시까지 대기
                     # 인증 키를 다시 초기화
                     extra_auth_keys_l = [
-                                   "0YI3qOGZRpOCN6jhmeaTdA", "i0oHwLBGTj-KB8CwRp4_ow", "f3UaCxwZRou1GgscGRaLeA", "fvPt09e-R5Cz7dPXvheQTQ", 
-                                   "KJ3VhCjASJid1YQowNiYdA", "0CdTvwYRTqmnU78GET6pnA","kH7frqXsQh6-366l7EIePQ", "1Fo6dIfFQK2aOnSHxXCtbg",
-                                   "4kmdlf-4TSOJnZX_uO0jvw", "zNMybVrVT6yTMm1a1d-sXw", "nEKJPx8sSQyCiT8fLEkMug", "P6_4JNbzS_qv-CTW86v6-w", 
-                                   "KjVfdQprSDC1X3UKa8gwyg", "mOEJ-yaTQ4qhCfsmk8OKCQ", "KEnMgMUCTH2JzIDFAqx9Qw", "f_x9c96ZTNC8fXPemSzQRA"]
+                        ## 여기에 키를 입력력
+                                   ]
                     current_auth_key_l = extra_auth_keys_l.pop(0)
                 else:
                     extra_auth_keys_l = extra_keys
@@ -347,11 +345,7 @@ def main():
 
 def download():
     bands = ["IR105", "IR112", "IR123", "SW038"]
-    extra_auth_keys = ["SQpr2nlTSm2Ka9p5U-ptLQ", "7Y0Uq8kqQOeNFKvJKvDn2g", "qRjwoc5gSGiY8KHOYMhoQw", "-n3ysiuWQ7698rIrltO-gg", 
-                       "0YI3qOGZRpOCN6jhmeaTdA", "i0oHwLBGTj-KB8CwRp4_ow", "f3UaCxwZRou1GgscGRaLeA", "fvPt09e-R5Cz7dPXvheQTQ", 
-                       "KJ3VhCjASJid1YQowNiYdA", "0CdTvwYRTqmnU78GET6pnA","kH7frqXsQh6-366l7EIePQ", "1Fo6dIfFQK2aOnSHxXCtbg",
-                       "4kmdlf-4TSOJnZX_uO0jvw", "zNMybVrVT6yTMm1a1d-sXw", "nEKJPx8sSQyCiT8fLEkMug", "P6_4JNbzS_qv-CTW86v6-w", 
-                       "KjVfdQprSDC1X3UKa8gwyg", "mOEJ-yaTQ4qhCfsmk8OKCQ", "KEnMgMUCTH2JzIDFAqx9Qw", "f_x9c96ZTNC8fXPemSzQRA"]
+    extra_auth_keys = [ " 여기에 키를 입력 "]
     log_file_path = "download_log.txt"
     current_auth_key = "0CdTvwYRTqmnU78GET6pnA"
     typhoon_data = extract_typhoon_data('bst_all.txt')

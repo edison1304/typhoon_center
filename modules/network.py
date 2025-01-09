@@ -4,19 +4,19 @@ from torch.nn import init
 import functools
 from torch.optim import lr_scheduler
 
-class MSELoss(nn.Module):
+class MAELoss(nn.Module):
     def __init__(self):
-        super(MSELoss, self).__init__()
+        super(MAELoss, self).__init__()
         
     def forward(self, pred, label):
         return torch.mean(torch.sqrt(torch.sum((pred - label) ** 2, dim=1)))
 
 
 def get_loss_function(config):
-    if config['loss'] == 'mse':
-        return MSELoss()
+    if config['loss'] == 'mae':
+        return MAELoss()
     else:
-        raise ValueError("Invalid loss type. Choose from 'cross_entropy', 'focal', 'label_smoothing', 'composite', or 'mse'.")
+        raise ValueError("Invalid loss type.")
 
 #optimizer, config, len(train_loader)
 def get_scheduler(config, optimizer, loader_length):

@@ -83,7 +83,6 @@ class CenterFinder(nn.Module):
         x = self.stage4(x)
         x = self.down4(x)
         
-        # Global pooling and coordinate prediction
         x = self.global_pool(x)
         x = x.flatten(1)
         coords = self.center_head(x)

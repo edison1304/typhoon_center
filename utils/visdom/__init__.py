@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 
+#사용하려면 수정해야함
+
 def show_images(images, labels, num_images=10):
     """이미지와 라벨을 시각화하는 함수"""
     plt.figure(figsize=(15, 5))

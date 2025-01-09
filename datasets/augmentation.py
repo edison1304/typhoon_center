@@ -9,8 +9,8 @@ import os
 
 class TyphoonAugmentation:
     def __init__(self, 
-                 rotation_prob=1.0,  # 회전 확률 증가
-                 rotation_range=(-180, 180),  # 전체 360도 범위로 확장
+                 rotation_prob=1.0,  # 회전 확률 
+                 rotation_range=(-180, 180),  # 전체 360도 범위
                  scale_prob=0.0,
                  scale_range=(0.8, 1.2),
                  noise_prob=0.0,
@@ -33,11 +33,9 @@ class TyphoonAugmentation:
             If debug=True: tuple (final_image, intermediate_images)
             If debug=False: final_image
         """
-        # Convert to tensor if numpy array
         if isinstance(image, np.ndarray):
             image = torch.from_numpy(image).float()
         
-        # 중간 결과를 저장할 리스트
         intermediate_images = [image.clone()]
         
         # 1. Rotation - 태풍의 회전 특성 반영 (360도 전체)
@@ -71,12 +69,11 @@ class TyphoonAugmentation:
 
     def visualize_steps(self, image, save_path=None):
         """
-        시각화를 위한 헬퍼 메소드 - 바로 plot을 보여주고 저장합니다
+        시각화를 위한 메소드 - 바로 plot을 보여주고 저장
         Args:
             image: input image
-            save_path: 이미지를 저장할 경로 (예: 'path/to/save/aug_steps.png')
+            save_path: 이미지를 저장할 경로 
         """
-        # 디버그 모드 임시 활성화
         original_debug = self.debug
         self.debug = True
         
@@ -95,14 +92,11 @@ class TyphoonAugmentation:
         for idx, (img, desc) in enumerate(zip(intermediates[:len(descriptions)], descriptions)):
             plt.subplot(1, len(descriptions), idx + 1)
             
-            # 이미지 전처리
             if torch.is_tensor(img):
                 img = img.cpu().detach().numpy()
             
-            # 채널 순서 변경 (C,H,W) -> (H,W,C)
             img = np.transpose(img, (1, 2, 0))
             
-            # 4채널 이미지를 3채널로 변환 (RGB로 표시)
             if img.shape[-1] == 4:
                 # 첫 3개 채널만 사용
                 img = img[:, :, :3]
@@ -122,7 +116,6 @@ class TyphoonAugmentation:
             print(f"Augmentation steps saved to: {save_path}")
         
         plt.show()
-        plt.close()  # 메모리 누수 방지를 위해 figure 닫기
+        plt.close()  
         
-        # 디버그 모드 복원
         self.debug = original_debug
